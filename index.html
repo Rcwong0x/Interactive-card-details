@@ -1,51 +1,392 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Interactive card details form</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <title>Interactive card details form by Rcwong0x</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&family=Space+Grotesk:wght@500&display=swap"
+    rel="stylesheet">
   <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
+    :root {
+      /* --primary-color: 99%, 64%) to hsl(278, 94%, 30%); */
+      --white: hsl(0, 0%, 100%);
+      --light-grayish-violet: hsl(270, 3%, 87%);
+      --dark-grayish-violet: hsl(279, 6%, 55%);
+      --very-dark-violet: hsl(278, 68%, 11%);
+
+      --gradient-active: linear-gradient(to right, hsl(249, 99%, 64%), hsl(278, 94%, 30%));
+      --error-color: hsl(0, 100%, 66%);
+
+      font-size: 62.5%;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 500;
+    }
+
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-size: 1.4rem;
+    }
+
+    /* */
+    .main-container {
+      display: flex;
+      flex-direction: column;
+
+      width: 100%;
+      height: 120vh;
+      min-width: 375px;
+    }
+
+    .cards-section {
+      position: relative;
+
+      flex: 1;
+      flex-basis: 30%;
+      background-image: url("images/bg-main-mobile.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .card-front,
+    .card-back {
+      width: 75%;
+      height: auto;
+
+      max-width: 447px;
+      max-height: 245px;
+      aspect-ratio: 1.8;
+      border-radius: 8px;
+
+      background-repeat: no-repeat;
+      overflow: hidden;
+    }
+
+    .card-front {
+      position: absolute;
+      left: 6%;
+      bottom: 0;
+      transform: translateY(50%);
+      z-index: 20;
+      background-image: url("./images/bg-card-front.png");
+    }
+
+    .card-back {
+      position: absolute;
+      right: 6%;
+      bottom: 20%;
+      z-index: 10;
+      background-image: url("./images/bg-card-back.png");
+    }
+
+    .card-front__logo {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+
+      width: 60px;
+      aspect-ratio: 1.787;
+    }
+
+    .card-front__numbers {
+      position: absolute;
+      left: 2rem;
+      bottom: 6.4rem;
+      font-size: 1.6rem;
+      color: var(--white);
+    }
+
+    .card-front__name {
+      position: absolute;
+      left: 2rem;
+      bottom: 3.4rem;
+      font-size: 1.4rem;
+      color: var(--white);
+      letter-spacing: 2px;
+
+      text-wrap: nowrap;
+      width: 18ch;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-front__exp-date,
+    .card__back-cvc {
+      position: absolute;
+      font-size: 1.4rem;
+      color: var(--white);
+    }
+
+    .card-front__exp-date {
+      right: 2rem;
+      bottom: 3.4rem;
+    }
+
+    .card__back-cvc {
+      right: 1.2rem;
+      top: 110px;
+
+    }
+
+
+    .form-section {
+      flex: 1;
+      flex-basis: 70%;
+    }
+
+    .form-submit {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+
+      width: 100%;
+      height: 100%;
+      padding: 16px;
+      padding-top: 8rem;
+      background-color: var(--white);
+    }
+
+    .row {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .col-12 {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .col-6 {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 50%;
+    }
+
+    .pl-8 {
+      padding-left: 8px;
+
+    }
+
+    .pl-12 {
+      padding-left: 12px;
+    }
+
+    .input {
+      padding: 16px 8px;
+      border-radius: 8px;
+      border: solid 2px var(--light-grayish-violet);
+      max-width: 100%;
+
+    }
+
+    .input:focus,
+    .input:active {
+      border: solid 2px var(--very-dark-violet);
+      outline: none;
+    }
+
+    .btn-primary {
+
+      background-color: var(--very-dark-violet);
+      color: var(--white);
+      width: 100%;
+      padding: 16px 0;
+      border-radius: 8px;
+      font-size: 2.2rem;
+      margin-top: auto;
+      border: none;
+    }
+
+    .complete {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 100%;
+      height: 100%;
+      padding: 16px;
+      background-color: var(--white);
+    }
+
+    .complete__content {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      justify-content: center;
+      align-items: center;
+
+      height: fit-content;
+      width: 100%;
+    }
+
+    .complete__img {
+      width: 45%;
+      height: auto;
+      aspect-ratio: 1;
+    }
+
+    .complete__title {
+      font-size: 3rem;
+      font-weight: 800;
+    }
+
+    .complete__text {
+      color: var(--dark-grayish-violet);
+      font-size: 1.8rem;
+    }
+
+    /* MOD */
+    .d-none {
+      display: none;
+    }
+
+
+    @media screen and (min-width: 380px) {
+      .main-container {
+        height: 100vh;
+      }
+    }
+
+    @media screen and (min-width: 425px) {
+      body {
+        font-size: 1.6rem;
+      }
+
+      .card-front__name {
+        width: 24ch;
+      }
+    }
+
+    @media screen and (min-width: 550px) {
+      .card__back-cvc {
+        right: 4.6rem;
+      }
+
+      .form-submit {
+        padding-top: 16rem;
+      }
+    }
   </style>
 </head>
+
 <body>
-
-  0000 0000 0000 0000
-  Jane Appleseed
-  00/00
-
-  000
-
-  Cardholder Name
-  e.g. Jane Appleseed
-
-  Card Number
-  e.g. 1234 5678 9123 0000
-
-  Exp. Date (MM/YY)
-  MM
-  YY
-
-  CVC
-  e.g. 123
-
-  Confirm
-
-  <!-- Completed state start -->
-
-  Thank you!
-  We've added your card details
-  Continue
-  
+  <main class="main-container">
+    <section class="cards-section">
+      <article class="card-front">
+        <img class="card-front__logo" src="./images/card-logo.svg" aria-hidden="true">
+        <p id="card-name" class="card-front__name" aria-hidden="true">RAYMUNDO WONG</p>
+        <p id="card-numbers" class="card-front__numbers" aria-hidden="true">0000 0000 0000 0000</p>
+        <p class="card-front__exp-date" aria-hidden="true">
+          <span id="card-exp-mm" class="card-front__exp-mm">00</span>/<span id="card-exp-yy"
+            class="card-front__exp-yy">00</span>
+        </p>
+      </article>
+      <article class="card-back">
+        <p id="card-cvc" class="card__back-cvc" aria-hidden="true">000</p>
+      </article>
+    </section>
+    <section class="form-section">
+      <form class="form-submit" action="">
+        <div class="row">
+          <div class="col-12">
+            <label for="name">Cardholder Name</label>
+            <input class="input" id="name" name="name" type="text" placeholder="e.g. Raymundo Wong" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <label for="number">Card Number</label>
+            <input class="input" id="number" name="number" type="text" placeholder="e.g. 1234 5678 9123 0000" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <label for="exp-mm">Exp. Date (MM/YY)</label>
+            <div class="row">
+              <div class="col-6">
+                <input class="input" id="exp-mm" name="exp-mm" type="text" placeholder="MM" required>
+              </div>
+              <div class="col-6 pl-8">
+                <input class="input" id="exp-yy" name="exp-yy" type="text" placeholder="YY" required>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 pl-12">
+            <label for="cvc">CVC</label>
+            <input class="input" id="cvc" name="cvc" type="text" placeholder="e.g. 123">
+          </div>
+        </div>
+        <button class="btn-primary" type="submit">Confirm</button>
+      </form>
+      <div class="complete d-none">
+        <div class="complete__content">
+          <img class="complete__img" src="./images/icon-complete.svg" alt="complete logo">
+          <p class="complete__title">TANK YOU!</p>
+          <p class="complete__text">We've added your card details</p>
+          <button class="btn-primary" type="submit">Confirm</button>
+        </div>
+      </div>
+    </section>
+  </main>
   <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="https://github.com/Rcwong0x" target="_blank">Rcwong0x</a>.
   </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const inputName = document.querySelector("#name");
+      const inputNumber = document.querySelector("#number");
+      const inputExpMonth = document.querySelector("#exp-mm");
+      const inputExpYear = document.querySelector("#exp-yy");
+      const inputCvc = document.querySelector("#cvc");
+
+      const nameText = document.querySelector("#card-name");
+      const numberText = document.querySelector("#card-numbers");
+      const expMMText = document.querySelector("#card-exp-mm");
+      const expYYText = document.querySelector("#card-exp-yy");
+      const cvcText = document.querySelector("#card-cvc");
+
+      function setListeners() {
+        inputName.addEventListener("input", event => {
+          writeInput(inputName.value, nameText);
+        });
+        inputNumber.addEventListener("input", event => {
+          writeInput(inputNumber.value, numberText);
+        });
+        inputExpMonth.addEventListener("input", event => {
+          writeInput(inputExpMonth.value, expMMText);
+        });
+        inputExpYear.addEventListener("input", event => {
+          writeInput(inputExpYear.value, expYYText);
+        });
+        inputCvc.addEventListener("input", event => {
+          writeInput(inputCvc.value, cvcText);
+        });
+      }
+      setListeners();
+
+      function writeInput(char, pointer) {
+        pointer.textContent = char.toUpperCase();
+      }
+    });
+  </script>
 </body>
+
 </html>
