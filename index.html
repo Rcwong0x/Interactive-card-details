@@ -102,7 +102,7 @@
     .card-front__numbers {
       position: absolute;
       left: 2rem;
-      bottom: 6.4rem;
+      bottom: 5.4rem;
       font-size: 1.6rem;
       color: var(--white);
     }
@@ -110,7 +110,7 @@
     .card-front__name {
       position: absolute;
       left: 2rem;
-      bottom: 3.4rem;
+      bottom: 2.4rem;
       font-size: 1.4rem;
       color: var(--white);
       letter-spacing: 2px;
@@ -130,7 +130,7 @@
 
     .card-front__exp-date {
       right: 2rem;
-      bottom: 3.4rem;
+      bottom: 2.4rem;
     }
 
     .card__back-cvc {
@@ -153,7 +153,7 @@
       width: 100%;
       height: 100%;
       padding: 16px;
-      padding-top: 8rem;
+      padding-top: 10rem;
       background-color: var(--white);
     }
 
@@ -364,17 +364,61 @@
       const cvcText = document.querySelector("#card-cvc");
 
       function setListeners() {
+
+        inputName.addEventListener("keydown", event => {
+          const isValidInput = isValid(event.keyCode, inputName, 25, false)
+          
+          if (!isValidInput){
+            event.preventDefault();
+          }
+        });
         inputName.addEventListener("input", event => {
-          writeInput(inputName.value, nameText);
+            writeInput(inputName.value, nameText);
+        });
+
+        inputNumber.addEventListener("keydown", event =>{
+            
+          const isValidInput = isValid(event.keyCode, inputNumber, 19, true)
+          if (!isValidInput){
+            event.preventDefault();
+          }
+
+          if([4, 9, 14].includes(inputNumber.value.length) && event.keyCode != 8){
+            inputNumber.value += " ";
+          }
         });
         inputNumber.addEventListener("input", event => {
-          writeInput(inputNumber.value, numberText);
+            writeInput(inputNumber.value, numberText);
+        });
+
+        inputExpMonth.addEventListener("keydown", event => {
+          const isValidInput = isValid(event.keyCode, inputExpMonth, 2, true)
+          
+          if (!isValidInput){
+            event.preventDefault();
+          }
         });
         inputExpMonth.addEventListener("input", event => {
           writeInput(inputExpMonth.value, expMMText);
         });
+
+        inputExpYear.addEventListener("keydown", event => {
+          const isValidInput = isValid(event.keyCode, inputExpYear, 2, true)
+          
+          if (!isValidInput){
+            event.preventDefault();
+          }
+        });
         inputExpYear.addEventListener("input", event => {
           writeInput(inputExpYear.value, expYYText);
+        });
+
+        inputCvc.addEventListener("keydown", event => {
+          const isValidInput = isValid(event.keyCode, inputCvc, 3, true)
+          
+          if (!isValidInput){
+            event.preventDefault();
+          }
         });
         inputCvc.addEventListener("input", event => {
           writeInput(inputCvc.value, cvcText);
@@ -384,6 +428,23 @@
 
       function writeInput(char, pointer) {
         pointer.textContent = char.toUpperCase();
+      }
+
+      function isValid (keyPressed, inputToValidate, maxLength, onlyNumbers = false){
+        
+        if(inputToValidate.value.length >= maxLength && !([8, 37, 39, 9].includes(keyPressed))) {
+            return false;
+        }
+        
+        if (onlyNumbers){
+          // KeyAllowed: backspace, left and right arrows and Numbers
+          const keyAllowed = [8, 9, 37, 39, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105];
+
+          if ( !(keyAllowed.includes(keyPressed)) ){
+            return false;
+          }
+        }
+        return true;
       }
     });
   </script>
