@@ -7,283 +7,13 @@
   <!-- displays site properly based on user's device -->
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <title>Interactive card details form by Rcwong0x</title>
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/sppiner.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&family=Space+Grotesk:wght@500&display=swap"
     rel="stylesheet">
-  <style>
-    :root {
-      /* --primary-color: 99%, 64%) to hsl(278, 94%, 30%); */
-      --white: hsl(0, 0%, 100%);
-      --light-grayish-violet: hsl(270, 3%, 87%);
-      --dark-grayish-violet: hsl(279, 6%, 55%);
-      --very-dark-violet: hsl(278, 68%, 11%);
-
-      --gradient-active: linear-gradient(to right, hsl(249, 99%, 64%), hsl(278, 94%, 30%));
-      --error-color: hsl(0, 100%, 66%);
-
-      font-size: 62.5%;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 500;
-    }
-
-    * {
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-size: 1.4rem;
-    }
-
-    /* */
-    .main-container {
-      display: flex;
-      flex-direction: column;
-
-      width: 100%;
-      height: 120vh;
-      min-width: 375px;
-    }
-
-    .cards-section {
-      position: relative;
-
-      flex: 1;
-      flex-basis: 30%;
-      background-image: url("images/bg-main-mobile.png");
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-
-    .card-front,
-    .card-back {
-      width: 75%;
-      height: auto;
-
-      max-width: 447px;
-      max-height: 245px;
-      aspect-ratio: 1.8;
-      border-radius: 8px;
-
-      background-repeat: no-repeat;
-      overflow: hidden;
-    }
-
-    .card-front {
-      position: absolute;
-      left: 6%;
-      bottom: 0;
-      transform: translateY(50%);
-      z-index: 20;
-      background-image: url("./images/bg-card-front.png");
-    }
-
-    .card-back {
-      position: absolute;
-      right: 6%;
-      bottom: 20%;
-      z-index: 10;
-      background-image: url("./images/bg-card-back.png");
-    }
-
-    .card-front__logo {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-
-      width: 60px;
-      aspect-ratio: 1.787;
-    }
-
-    .card-front__numbers {
-      position: absolute;
-      left: 2rem;
-      bottom: 5.4rem;
-      font-size: 1.6rem;
-      color: var(--white);
-    }
-
-    .card-front__name {
-      position: absolute;
-      left: 2rem;
-      bottom: 2.4rem;
-      font-size: 1.4rem;
-      color: var(--white);
-      letter-spacing: 2px;
-
-      text-wrap: nowrap;
-      width: 18ch;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .card-front__exp-date,
-    .card__back-cvc {
-      position: absolute;
-      font-size: 1.4rem;
-      color: var(--white);
-    }
-
-    .card-front__exp-date {
-      right: 2rem;
-      bottom: 2.4rem;
-    }
-
-    .card__back-cvc {
-      right: 1.2rem;
-      top: 110px;
-
-    }
-
-
-    .form-section {
-      flex: 1;
-      flex-basis: 70%;
-    }
-
-    .form-submit {
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-
-      width: 100%;
-      height: 100%;
-      padding: 16px;
-      padding-top: 10rem;
-      background-color: var(--white);
-    }
-
-    .row {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-    }
-
-    .col-12 {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      width: 100%;
-    }
-
-    .col-6 {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      width: 50%;
-    }
-
-    .pl-8 {
-      padding-left: 8px;
-
-    }
-
-    .pl-12 {
-      padding-left: 12px;
-    }
-
-    .input {
-      padding: 16px 8px;
-      border-radius: 8px;
-      border: solid 2px var(--light-grayish-violet);
-      max-width: 100%;
-
-    }
-
-    .input:focus,
-    .input:active {
-      border: solid 2px var(--very-dark-violet);
-      outline: none;
-    }
-
-    .btn-primary {
-
-      background-color: var(--very-dark-violet);
-      color: var(--white);
-      width: 100%;
-      padding: 16px 0;
-      border-radius: 8px;
-      font-size: 2.2rem;
-      margin-top: auto;
-      border: none;
-    }
-
-    .complete {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      width: 100%;
-      height: 100%;
-      padding: 16px;
-      background-color: var(--white);
-    }
-
-    .complete__content {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      justify-content: center;
-      align-items: center;
-
-      height: fit-content;
-      width: 100%;
-    }
-
-    .complete__img {
-      width: 45%;
-      height: auto;
-      aspect-ratio: 1;
-    }
-
-    .complete__title {
-      font-size: 3rem;
-      font-weight: 800;
-    }
-
-    .complete__text {
-      color: var(--dark-grayish-violet);
-      font-size: 1.8rem;
-    }
-
-    /* MOD */
-    .d-none {
-      display: none;
-    }
-
-
-    @media screen and (min-width: 380px) {
-      .main-container {
-        height: 100vh;
-      }
-    }
-
-    @media screen and (min-width: 425px) {
-      body {
-        font-size: 1.6rem;
-      }
-
-      .card-front__name {
-        width: 24ch;
-      }
-    }
-
-    @media screen and (min-width: 550px) {
-      .card__back-cvc {
-        right: 4.6rem;
-      }
-
-      .form-submit {
-        padding-top: 16rem;
-      }
-    }
-  </style>
 </head>
 
 <body>
@@ -307,13 +37,13 @@
         <div class="row">
           <div class="col-12">
             <label for="name">Cardholder Name</label>
-            <input class="input" id="name" name="name" type="text" placeholder="e.g. Raymundo Wong" required>
+            <input class="input" id="name" name="name" type="text" placeholder="e.g. Raymundo Wong" maxlength="25" required>
           </div>
         </div>
         <div class="row">
           <div class="col-12">
             <label for="number">Card Number</label>
-            <input class="input" id="number" name="number" type="text" placeholder="e.g. 1234 5678 9123 0000" required>
+            <input class="input" id="number" name="number" type="text" placeholder="e.g. 1234 5678 9123 0000" pattern="[0-9 ]{19}" required>
           </div>
         </div>
         <div class="row">
@@ -321,26 +51,30 @@
             <label for="exp-mm">Exp. Date (MM/YY)</label>
             <div class="row">
               <div class="col-6">
-                <input class="input" id="exp-mm" name="exp-mm" type="text" placeholder="MM" required>
+                <input class="input" id="exp-mm" name="exp-mm" type="text" placeholder="MM" pattern="[0-9]{2}" required>
               </div>
               <div class="col-6 pl-8">
-                <input class="input" id="exp-yy" name="exp-yy" type="text" placeholder="YY" required>
+                <input class="input" id="exp-yy" name="exp-yy" type="text" placeholder="YY" pattern="[0-9]{2}" required>
               </div>
             </div>
           </div>
           <div class="col-6 pl-12">
             <label for="cvc">CVC</label>
-            <input class="input" id="cvc" name="cvc" type="text" placeholder="e.g. 123">
+            <input class="input" id="cvc" name="cvc" type="text" placeholder="e.g. 123" pattern="[0-9]{3}" required>
           </div>
         </div>
-        <button class="btn-primary" type="submit">Confirm</button>
+        <div class="spinner d-none">
+          <div class="double-bounce1"></div>
+          <div class="double-bounce2"></div>
+        </div>
+        <button id="confirm" class="btn-primary" type="submit">Confirm</button>
       </form>
-      <div class="complete d-none">
+      <div id="complete-box" class="complete d-none">
         <div class="complete__content">
           <img class="complete__img" src="./images/icon-complete.svg" alt="complete logo">
           <p class="complete__title">TANK YOU!</p>
           <p class="complete__text">We've added your card details</p>
-          <button class="btn-primary" type="submit">Confirm</button>
+          <button class="btn-primary" type="submit" onclick="location.reload()">Confirm</button>
         </div>
       </div>
     </section>
@@ -363,21 +97,25 @@
       const expYYText = document.querySelector("#card-exp-yy");
       const cvcText = document.querySelector("#card-cvc");
 
+      const completeBox = document.querySelector("#complete-box");
+      const formSubmit = document.querySelector(".form-submit");
+      const btnConfirm = document.querySelector("#confirm");
+
       function setListeners() {
 
         inputName.addEventListener("keydown", event => {
-          const isValidInput = isValid(event.keyCode, inputName, 25, false)
+          const isValidInput = isValid(event.keyCode, inputName, 50, false)
           
           if (!isValidInput){
             event.preventDefault();
           }
         });
         inputName.addEventListener("input", event => {
-            writeInput(inputName.value, nameText);
+          writeInput(inputName.value, nameText);
         });
-
+        
         inputNumber.addEventListener("keydown", event =>{
-            
+          
           const isValidInput = isValid(event.keyCode, inputNumber, 19, true)
           if (!isValidInput){
             event.preventDefault();
@@ -423,6 +161,49 @@
         inputCvc.addEventListener("input", event => {
           writeInput(inputCvc.value, cvcText);
         });
+
+        btnConfirm.addEventListener("click", event =>{
+          event.preventDefault();
+          const regex = /^[0-9 ]+$/;
+          let error = false;
+
+          const nameInputisValid = inputName.value.length <= 25;
+          const numberInputisValid = regex.test(inputNumber.value) && inputNumber.value.length == 19;
+          const expMInputisValid = regex.test(inputExpMonth.value) && inputExpMonth.value.length == 2;
+          const expYInputisValid = regex.test(inputExpYear.value) && inputExpYear.value.length == 2;
+          const CvcInputisValid = regex.test(inputCvc.value) && inputCvc.value.length == 3;
+          const spinner = document.querySelector(".spinner");
+          
+          if (!nameInputisValid){
+            showAlert(inputName ,inputName.parentElement,"wrong format, max: 25ch");
+            error = true;
+          }
+          if (!numberInputisValid){
+            showAlert(inputNumber ,inputNumber.parentElement ,"wrong format, only numbers and 16 digits");
+            error = true;
+          }
+          if (!expMInputisValid || !expYInputisValid){
+            if(!expYInputisValid){
+              showAlert(inputExpYear ,inputExpMonth.parentElement.parentElement.parentElement ,"");
+            }
+            showAlert(inputExpMonth ,inputExpMonth.parentElement.parentElement.parentElement ,"wrong format, only numbers and 2 digits");
+            error = true;
+          }
+          if (!CvcInputisValid){
+            showAlert(inputCvc ,inputCvc.parentElement ,"wrong format, only numbers and 3 digits");
+            error = true;
+          }
+
+          if(!error){
+            spinner.classList.remove("d-none");
+            
+            setTimeout(() => {
+              spinner.classList.add("d-none");
+              showComplete();
+            }, 1500);
+          }
+        });
+
       }
       setListeners();
 
@@ -446,7 +227,29 @@
         }
         return true;
       }
+
+      function showAlert(input ,parent, text){
+        const textAlert = document.createElement("p");
+        textAlert.textContent = text;
+        textAlert.classList.add("alert-error");
+  
+        parent.appendChild(textAlert);
+        input.classList.add("input-error");
+        
+        setTimeout(() => {
+          textAlert.remove();
+          input.classList.remove("input-error");
+        }, 2500);
+      }
+  
+      function showComplete(){
+        formSubmit.classList.add("d-none");
+        completeBox.classList.remove("d-none");
+      }
+
+    //END DOMCONTENDLOAD  
     });
+
   </script>
 </body>
 
