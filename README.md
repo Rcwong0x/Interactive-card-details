@@ -36,8 +36,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL ](https://www.frontendmentor.io/solutions/interactive-card-details-html-css-and-js-4BY9VNLJ8V)
-- Live Site URL: [Add live site URL ](https://rcwong0x.github.io/Interactive-card-details/)
+- Solution URL: [View](https://www.frontendmentor.io/solutions/interactive-card-details-html-css-and-js-4BY9VNLJ8V)
+- Live Site URL: [View](https://rcwong0x.github.io/Interactive-card-details/)
 
 ## My process
 
