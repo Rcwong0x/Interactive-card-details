@@ -16,7 +16,6 @@ This is a solution to the [Interactive card details form challenge on Frontend M
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
 
 ## Overview
 
@@ -37,8 +36,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL ](https://frontmentor-solutions/card)
-- Live Site URL: [Add live site URL ](https://your-live-site-url.com)
+- Solution URL: [Add solution URL ](https://www.frontendmentor.io/solutions/interactive-card-details-html-css-and-js-4BY9VNLJ8V)
+- Live Site URL: [Add live site URL ](https://rcwong0x.github.io/Interactive-card-details/)
 
 ## My process
 
