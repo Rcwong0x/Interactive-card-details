@@ -317,13 +317,13 @@
     }
     .card-front {
       left: 25%;
-      top: 25%;
-      transform: translateY(-35%);
+      bottom: 50%;
+      transform: translateY(-5%);
     }
     .card-back {
       left: 50%;
-      bottom: 25%;
-      transform: translateY(50%);
+      top: 50%;
+      transform: translateY(5%);
     }
   }
   @media screen and (min-width: 1440px) {
