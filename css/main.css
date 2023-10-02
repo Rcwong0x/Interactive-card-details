@@ -147,7 +147,10 @@
     margin: 0;
     background-color: var(--white);
   }
-
+  .form-submit__label {
+    font-weight: 500;
+    text-transform: uppercase;
+  }
   .row {
     display: flex;
     flex-direction: row;
@@ -313,12 +316,12 @@
 
     }
     .card-front {
-      left: 0%;
+      left: 25%;
       top: 25%;
-      transform: translate(50%, -35%);
+      transform: translateY(-35%);
     }
     .card-back {
-      left: 25%;
+      left: 50%;
       bottom: 25%;
       transform: translateY(50%);
     }
