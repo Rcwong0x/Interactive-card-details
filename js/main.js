@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const regex = /^[0-9 ]+$/;
       let error = false;
 
-      const nameInputisValid = inputName.value.length <= 25;
+      const nameInputisValid = inputName.value.length > 25 && inputName.value.length == 0;
       const numberInputisValid = regex.test(inputNumber.value) && inputNumber.value.length == 19;
       const expMInputisValid = regex.test(inputExpMonth.value) && inputExpMonth.value.length == 2;
       const expYInputisValid = regex.test(inputExpYear.value) && inputExpYear.value.length == 2;
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const spinner = document.querySelector(".spinner");
       
       if (!nameInputisValid){
-        showAlert(inputName ,inputName.parentElement,"wrong format, max: 25ch");
+        showAlert(inputName ,inputName.parentElement,"wrong format, the input can’t be empty and max: 25ch");
         error = true;
       }
       if (!numberInputisValid){
