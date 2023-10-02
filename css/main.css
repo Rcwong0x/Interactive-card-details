@@ -274,7 +274,7 @@
     }
 
     .card-front__name {
-      width: 24ch;
+      width: 25ch;
     }
   }
 
@@ -295,6 +295,9 @@
     .cards-section {
       flex-basis: 35%;
       
+    }
+    .card-front__name {
+      width: 30ch;
     }
     .form-section {
       flex-basis: 65%;
